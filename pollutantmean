@@ -1,0 +1,20 @@
+
+pollutantmean <- function(directory, pollutant, ID){
+  
+  files_list<-list.files(directory, full.names=TRUE)
+  dat<-data.frame()
+  ## print(files_list)
+  ## print(length(files_list))
+  
+  ##for(i in length(files_list)){
+  for(i in seq_along(files_list)){
+      dat<-rbind(dat,read.csv(files_list[i]))
+  }
+  ##str(dat)
+  dat_subset<-dat[,pollutant]
+  mean(dat_subset, na.rm=TRUE)
+  
+  ##dat_subset<-dat[which(dat[,"ID"]==ID),pollutant]
+  ## mean(as.numeric(dat_subset[pollutant]), na.rm=TRUE)
+  # head(dat_subset, n=100L)
+}
